@@ -17,8 +17,31 @@ namespace AzureFunction1
         [Function("Function1")]
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
         {
+            List<string> ts = new List<string>();
+            ts.Add("Aditya");
+            ts.Add("Rohan");
+            ts.Add("Raghav");
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Aditya Azure Functions!");
+            return new OkObjectResult(ts);
         }
+       
+    }
+    public class Function2
+    {
+        private readonly ILogger<Function1> _logger;
+
+        public Function2(ILogger<Function1> logger)
+        {
+            _logger = logger;
+        }
+
+        [Function("Function2")]
+        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
+        {
+
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            return new OkObjectResult("Welcome to Aditya Azure Functions 2!");
+        }
+        
     }
 }
